@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inicio – Cliente</title>
+<style>
+:root{--azul:#2f5fa7;--verde:#4caf50;--gris:#eef2f6;--texto:#1f2d3d}
+*{box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+body{margin:0;background:var(--gris)}
+header{background:var(--azul);color:#fff;padding:16px;text-align:center;font-weight:bold}
+.contenedor{padding:16px;max-width:420px;margin:auto}
+.card{background:#fff;border-radius:18px;padding:18px;box-shadow:0 4px 8px rgba(0,0,0,.1);margin-bottom:16px}
+.card h3{margin-top:0}
+button{width:100%;padding:16px;border:none;border-radius:16px;background:var(--verde);color:#fff;font-size:16px;font-weight:bold;cursor:pointer;margin-top:12px}
+.secundario{background:var(--azul)}
+.info{font-size:14px;color:#555;margin-top:8px}
+.ruta{padding:10px;border-bottom:1px solid #eee;font-size:14px}
+.ruta:last-child{border-bottom:none}
+</style>
+</head>
+<body>
+<header>🚐 Combis – Inicio</header>
+<div class="contenedor">
+
+<div class="card">
+<h3>🚍 Acceso chofer</h3>
+<p class="info">Si eres chofer, inicia sesión para gestionar tu viaje y validar pasajeros.</p>
+<button class="secundario" onclick="location.href='https://page-transporte-chofer-panel.netlify.app/'">Panel del Chofer</button>
+</div>
+
+<div class="card">
+
+<div class="card">
+<h3>🎫 Apartar lugares</h3>
+<p class="info">Reserva tus lugares con anticipación y genera tu código QR.</p>
+<button onclick="location.href='generar-qr.html'">Generar QR</button>
+</div>
+
+<div class="card">
+<h3>📍 Rutas próximas</h3>
+<div id="rutasCliente"></div>
+</div>
+
+<h3>🛡️ Acceso Administrador</h3>
+<p class="info">Si eres administrador, accede al panel de gestión general.</p>
+<button class="secundario" onclick="location.href='inicio_general.html'">Panel Administrador</button>
+</div>
+
+<div class="card">
+<h3>ℹ️ Importante</h3>
+<p class="info">Guarda tu código QR y tenlo listo al abordar. El chofer validará tus lugares antes de subir.</p>
+</div>
+
+</div>
+
+<script>
+// Rutas visibles para el cliente (simulado)
+const rutas=[
+ {origen:'San Pedro',destino:'Ciudad Central',hora:'08:30',disponibles:9},
+ {origen:'San Pedro',destino:'Ciudad Central',hora:'10:00',disponibles:5},
+ {origen:'San Juan',destino:'Terminal Norte',hora:'09:00',disponibles:7}
+];
+
+const cont=document.getElementById('rutasCliente');
+rutas.forEach(r=>{
+ const div=document.createElement('div');
+ div.className='ruta';
+ div.innerHTML=`${r.origen} → ${r.destino}<br>⏰ ${r.hora} | 🪑 ${r.disponibles} disponibles`;
+ cont.appendChild(div);
+});
+</script>
+</body>
+</html>
